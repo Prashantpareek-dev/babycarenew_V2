@@ -107,6 +107,115 @@
             pointer-events: none;
         }
 
+        /* Video Testimonials Carousel */
+        .video-testimonial-wrapper {
+            position: relative;
+        }
+
+        .video-testimonial-track {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 4px 20px;
+            margin: 0 -20px;
+        }
+
+        .video-testimonial-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-testimonial-slide {
+            position: relative;
+            flex: 0 0 55%;
+            aspect-ratio: 9 / 16;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111;
+            scroll-snap-align: center;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+
+        .video-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .video-nav-prev {
+            left: 2px;
+        }
+
+        .video-nav-next {
+            right: 2px;
+        }
+
+        .video-testimonial-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-mute-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+        }
+
+        .video-testimonial-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 8px 10px 9px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+        }
+
+        .video-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #f3d3b8;
+            transition: all 0.25s ease;
+        }
+
+        .video-dot.active {
+            width: 20px;
+            border-radius: 4px;
+            background: var(--primary-orange, #f97316);
+        }
+
         /* Fade-in animations */
         @keyframes fadeInUp {
             from {
@@ -1156,6 +1265,56 @@
                     <li>પૂરતી ઊંઘ લો (7-8 કલાક)</li>
                     <li>તણાવ ઓછો રાખો, યોગ-મેડિટેશન કરો</li>
                 </ul>
+            </div>
+        </section>
+
+        <!-- VIDEO TESTIMONIALS -->
+        <section class="p-4 bg-white">
+            <h2 class="display-font text-2xl text-orange-600 mb-2 text-center">
+                ગ્રાહકોના વિડિયો પ્રશંસાપત્રો 🎥
+            </h2>
+            <p class="text-sm text-gray-600 text-center mb-6">
+                જુઓ, અમારા ગ્રાહકોએ પોતાનો અનુભવ શેર કર્યો
+            </p>
+
+            <div class="video-testimonial-wrapper">
+                <button type="button" class="video-nav-btn video-nav-prev" aria-label="Previous video">❮</button>
+
+                <div id="videoTestimonials" class="video-testimonial-track">
+                    <div class="video-testimonial-slide">
+                        <video class="video-testimonial-player" src="./video/compressed/1.mp4" playsinline muted
+                            preload="metadata"></video>
+                        <button type="button" class="video-mute-btn" aria-label="Mute or unmute">🔇</button>
+                        <div class="video-testimonial-caption">ગ્રાહક પ્રશંસાપત્ર 1</div>
+                    </div>
+                    <div class="video-testimonial-slide">
+                        <video class="video-testimonial-player" src="./video/compressed/2.mp4" playsinline muted
+                            preload="metadata"></video>
+                        <button type="button" class="video-mute-btn" aria-label="Mute or unmute">🔇</button>
+                        <div class="video-testimonial-caption">ગ્રાહક પ્રશંસાપત્ર 2</div>
+                    </div>
+                    <div class="video-testimonial-slide">
+                        <video class="video-testimonial-player" src="./video/compressed/3.mp4" playsinline muted
+                            preload="metadata"></video>
+                        <button type="button" class="video-mute-btn" aria-label="Mute or unmute">🔇</button>
+                        <div class="video-testimonial-caption">ગ્રાહક પ્રશંસાપત્ર 3</div>
+                    </div>
+                    <div class="video-testimonial-slide">
+                        <video class="video-testimonial-player" src="./video/compressed/4.mp4" playsinline muted
+                            preload="metadata"></video>
+                        <button type="button" class="video-mute-btn" aria-label="Mute or unmute">🔇</button>
+                        <div class="video-testimonial-caption">ગ્રાહક પ્રશંસાપત્ર 4</div>
+                    </div>
+                </div>
+
+                <button type="button" class="video-nav-btn video-nav-next" aria-label="Next video">❯</button>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 mt-4" id="videoTestimonialsDots">
+                <span class="video-dot active"></span>
+                <span class="video-dot"></span>
+                <span class="video-dot"></span>
+                <span class="video-dot"></span>
             </div>
         </section>
 
@@ -2291,6 +2450,125 @@
 
             ctaObserver.observe(hero);
             ctaObserver.observe(orderForm);
+        })();
+
+        // Video testimonials: auto-playing infinite swipe carousel
+        (function () {
+            const track = document.getElementById('videoTestimonials');
+            if (!track) return;
+
+            const slides = Array.from(track.querySelectorAll('.video-testimonial-slide'));
+            const videos = slides.map(slide => slide.querySelector('.video-testimonial-player'));
+            const dots = Array.from(document.querySelectorAll('#videoTestimonialsDots .video-dot'));
+            let activeIndex = 0;
+            let isMuted = false;
+            let isSwiping = false;
+
+            function updateMuteButtons() {
+                track.querySelectorAll('.video-mute-btn').forEach(btn => {
+                    btn.textContent = isMuted ? '🔇' : '🔊';
+                });
+            }
+
+            function setActive(index) {
+                activeIndex = (index + slides.length) % slides.length;
+
+                videos.forEach((video, i) => {
+                    if (i === activeIndex) {
+                        video.currentTime = 0;
+                        video.muted = isMuted;
+                        const playPromise = video.play();
+                        if (playPromise && playPromise.catch) {
+                            playPromise.catch(() => {
+                                // Browser blocked unmuted autoplay (no user gesture yet) —
+                                // fall back to muted so the video still plays on focus.
+                                video.muted = true;
+                                isMuted = true;
+                                updateMuteButtons();
+                                video.play().catch(() => {});
+                            });
+                        }
+                    } else {
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                });
+
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+            }
+
+            function goToSlide(index) {
+                isSwiping = true;
+                const target = (index + slides.length) % slides.length;
+                slides[target].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                setActive(target);
+                setTimeout(() => { isSwiping = false; }, 500);
+            }
+
+            // Auto-advance to the next video (looping forever) when one finishes
+            videos.forEach((video, i) => {
+                video.addEventListener('ended', () => goToSlide(i + 1));
+            });
+
+            // Mute/unmute toggle — state carries over to whichever video is active
+            track.querySelectorAll('.video-mute-btn').forEach((btn, i) => {
+                btn.addEventListener('click', () => {
+                    isMuted = !isMuted;
+                    videos[activeIndex].muted = isMuted;
+                    updateMuteButtons();
+                });
+            });
+
+            // Prev/next arrow buttons
+            const wrapper = track.closest('.video-testimonial-wrapper');
+            const prevBtn = wrapper && wrapper.querySelector('.video-nav-prev');
+            const nextBtn = wrapper && wrapper.querySelector('.video-nav-next');
+            if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(activeIndex - 1));
+            if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(activeIndex + 1));
+
+            // Detect manual swipes and keep the correct video playing/muted.
+            // Uses "closest slide to the track's center" rather than an
+            // intersection-ratio threshold, since with peeking slides more
+            // than one card can be >60% visible at once.
+            let scrollRAF = null;
+            function handleScroll() {
+                if (isSwiping || scrollRAF) return;
+                scrollRAF = requestAnimationFrame(() => {
+                    scrollRAF = null;
+                    const trackRect = track.getBoundingClientRect();
+                    const trackCenter = trackRect.left + trackRect.width / 2;
+                    let closest = activeIndex;
+                    let closestDist = Infinity;
+
+                    slides.forEach((slide, i) => {
+                        const r = slide.getBoundingClientRect();
+                        const dist = Math.abs((r.left + r.width / 2) - trackCenter);
+                        if (dist < closestDist) {
+                            closestDist = dist;
+                            closest = i;
+                        }
+                    });
+
+                    if (closest !== activeIndex) {
+                        setActive(closest);
+                    }
+                });
+            }
+
+            track.addEventListener('scroll', handleScroll, { passive: true });
+
+            // Only autoplay once the carousel actually scrolls into view on the page
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setActive(activeIndex);
+                        sectionObserver.disconnect();
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            sectionObserver.observe(track);
+            updateMuteButtons();
         })();
 
         // Utility function to retrieve locally saved forms (for admin/debugging)
